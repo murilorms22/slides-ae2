@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Módulo 2 · Vídeo 2 · Tokens e memória</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-module="MÓDULO 2 · COMO A IA FUNCIONA">
+<main id="stage">
+
+<!-- ============ 1. ABERTURA ============ -->
+<section class="slide cover">
+  <span class="kicker pop" style="--d:0">Módulo 2 · Vídeo 2</span>
+  <h1 class="pop" style="--d:1">Tokens<br>e <em>memória</em></h1>
+  <p class="sub pop" style="--d:2">O que a IA “lê” e quanto ela consegue lembrar</p>
+  <svg class="decor pop" style="--d:2" viewBox="0 0 640 640" aria-hidden="true">
+    <g>
+      <rect x="60" y="400" width="240" height="110" rx="18" fill="#01CDFF"/><rect x="90" y="378" width="46" height="26" rx="8" fill="#01CDFF"/><rect x="224" y="378" width="46" height="26" rx="8" fill="#01CDFF"/>
+      <rect x="320" y="400" width="240" height="110" rx="18" fill="#218BC5"/><rect x="350" y="378" width="46" height="26" rx="8" fill="#218BC5"/><rect x="484" y="378" width="46" height="26" rx="8" fill="#218BC5"/>
+      <rect x="190" y="270" width="240" height="110" rx="18" fill="#218BC5"/><rect x="220" y="248" width="46" height="26" rx="8" fill="#218BC5"/><rect x="354" y="248" width="46" height="26" rx="8" fill="#218BC5"/>
+      <rect x="320" y="140" width="240" height="110" rx="18" fill="#01CDFF" transform="rotate(8 440 195)"/>
+    </g>
+  </svg>
+</section>
+
+<!-- ============ 2. O QUE É TOKEN ============ -->
+<section class="slide">
+  <h2 class="t sm pop" style="--d:0">O computador não lê palavras. <em>Lê peças.</em></h2>
+  <div class="body">
+    <div class="bricks" style="gap:12px;padding-top:20px">
+      <span class="brick c1 pop" style="--d:1">Aprend</span>
+      <span class="brick c2 pop" style="--d:2">iz</span>
+      <span class="brick c1 pop" style="--d:3">agem</span>
+      <span class="brick c2 pop" style="--d:4">é</span>
+      <span class="brick c1 pop" style="--d:5">import</span>
+      <span class="brick c2 pop" style="--d:6">ante</span>
+      <span class="brick c1 pop" style="--d:7">!</span>
+    </div>
+    <p class="cap pop" style="--d:9;font-size:56px;margin-top:30px">Essas peças se chamam <span class="hl-b">TOKENS</span>.</p>
+  </div>
+</section>
+
+<!-- ============ 3. REGRA PRÁTICA ============ -->
+<section class="slide">
+  <h2 class="t sm pop" style="--d:0">Em português: <em>1 a 2 tokens</em> por palavra</h2>
+  <div class="body" style="align-items:stretch">
+    <div class="grid2" style="flex:1;max-height:600px;margin:auto 0">
+      <div class="card pop" style="--d:1;justify-content:center">
+        <div class="bricks" style="min-height:150px;align-items:center"><span class="brick c1 lg">casa</span></div>
+        <div class="h">1 token</div>
+        <p class="txt">Palavra curta e comum</p>
+      </div>
+      <div class="card blue pop" style="--d:2;justify-content:center">
+        <div class="bricks" style="gap:8px;min-height:150px;align-items:center">
+          <span class="brick c1" style="font-size:52px;padding:20px 18px 16px">inconst</span><span class="brick c2" style="font-size:52px;padding:20px 18px 16px">it</span><span class="brick c1" style="font-size:52px;padding:20px 18px 16px">ucion</span><span class="brick c2" style="font-size:52px;padding:20px 18px 16px">al</span><span class="brick c1" style="font-size:52px;padding:20px 18px 16px">mente</span>
+        </div>
+        <div class="h hl-b">vários tokens</div>
+        <p class="txt">Palavra longa e rara</p>
+      </div>
+    </div>
+    <p class="note pop" style="--d:3;text-align:center">Divisão ilustrativa: cada IA corta as peças do seu jeito.</p>
+  </div>
+</section>
+
+<!-- ============ 4. ENTRADA E SAÍDA ============ -->
+<section class="slide">
+  <h2 class="t pop" style="--d:0">Tokens de <em>entrada</em> e de <em style="color:var(--blue)">saída</em></h2>
+  <div class="body">
+    <div class="flow pop" style="--d:1">
+      <!-- Você -->
+      <div class="node" style="width:200px">
+        <svg class="ico" viewBox="0 0 100 100" width="170" height="170"><circle cx="50" cy="32" r="18"/><path d="M16 92C16 62 84 62 84 92"/></svg>
+        <span class="lab">Você</span>
+      </div>
+      <svg class="arrow" viewBox="0 0 70 40"><path d="M4 20H62M46 6L62 20L46 34" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <!-- Entrada: torneira + tanque -->
+      <div class="node" style="width:430px">
+        <svg viewBox="0 0 260 220" width="300" height="250">
+          <rect x="20" y="10" width="150" height="34" rx="10" fill="#218BC5"/>
+          <rect x="132" y="10" width="38" height="70" rx="10" fill="#218BC5"/>
+          <circle cx="151" cy="104" r="11" fill="#01CDFF"><animate attributeName="cy" values="88;150;150" dur="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0" dur="1.2s" repeatCount="indefinite"/></circle>
+          <rect x="70" y="140" width="170" height="70" rx="14" fill="#fff" stroke="#218BC5" stroke-width="6"/>
+          <rect x="76" y="146" width="158" height="58" rx="9" fill="#01CDFF"/>
+        </svg>
+        <span class="lab hl-b">Entrada</span>
+        <span>o que você escreve ou anexa</span>
+      </div>
+      <svg class="arrow" viewBox="0 0 70 40"><path d="M4 20H62M46 6L62 20L46 34" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="aiblock">IA</div>
+      <svg class="arrow" viewBox="0 0 70 40"><path d="M4 20H62M46 6L62 20L46 34" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <!-- Saída: torneira + tanque -->
+      <div class="node" style="width:430px">
+        <svg viewBox="0 0 260 220" width="300" height="250">
+          <rect x="20" y="10" width="150" height="34" rx="10" fill="#01CDFF"/>
+          <rect x="132" y="10" width="38" height="70" rx="10" fill="#01CDFF"/>
+          <circle cx="151" cy="104" r="11" fill="#218BC5"><animate attributeName="cy" values="88;150;150" dur="1.2s" begin="-.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0" dur="1.2s" begin="-.6s" repeatCount="indefinite"/></circle>
+          <rect x="70" y="140" width="170" height="70" rx="14" fill="#fff" stroke="#218BC5" stroke-width="6"/>
+          <rect x="76" y="146" width="158" height="58" rx="9" fill="#218BC5"/>
+        </svg>
+        <span class="lab hl">Saída</span>
+        <span>o que ela gera</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. O QUE PESA ============ -->
+<section class="slide">
+  <h2 class="t pop" style="--d:0">Mais tokens = <em>mais tempo</em> e mais gasto</h2>
+  <div class="body" style="align-items:stretch;gap:30px">
+    <div class="grid2" style="flex:1;max-height:520px;margin:auto 0">
+      <div class="card pop" style="--d:1;justify-content:center">
+        <div class="bricks" style="min-height:90px;align-items:center" data-bricks="5"></div>
+        <p class="txt">Pergunta curta + resposta curta</p>
+        <div class="h">⚡ Rápido</div>
+      </div>
+      <div class="card red pop" style="--d:2;justify-content:center">
+        <div class="bricks" style="min-height:90px;align-items:center;gap:8px" data-bricks="26"></div>
+        <p class="txt">PDF grande + resposta longa</p>
+        <div class="h" style="color:var(--soft-red)">⏳ Demora mais</div>
+      </div>
+    </div>
+    <div class="tip pop" style="--d:3;align-self:center">💡 Prompt objetivo gasta menos e costuma funcionar melhor.</div>
+  </div>
+</section>
+
+<!-- ============ 6. JANELA DE CONTEXTO ============ -->
+<section class="slide">
+  <h2 class="t pop" style="--d:0">A memória da IA <em>tem limite</em></h2>
+  <div class="body" style="flex-direction:row;justify-content:space-between;gap:60px">
+    <p class="cap pop" style="--d:1;font-size:64px;max-width:760px;line-height:1.2">Já viu a IA <span class="hl-b">esquecer</span> o que você pediu no começo da conversa?</p>
+    <div class="chat">
+      <div class="bub u old pop" style="--d:2">Responda sempre em tópicos curtos.</div>
+      <div class="bub a pop" style="--d:3">Claro! Aqui vai uma explicação…</div>
+      <div class="bub u pop" style="--d:4">E sobre o segundo tema?</div>
+      <div class="bub a pop" style="--d:5">Um longo parágrafo, sem tópicos…</div>
+      <div class="bub q pop" style="--d:6">E o pedido do começo? 🤔</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. MESA DE ESTUDOS [REVELAR] ============ -->
+<section class="slide">
+  <h2 class="t pop" style="--d:0">Janela de contexto: <em>a mesa de estudos</em></h2>
+  <div class="body" style="flex-direction:row;justify-content:space-between;gap:40px">
+    <svg viewBox="0 0 1100 620" width="1100" height="620" style="overflow:visible;flex:none" aria-label="Mesa vista de cima com folhas; a mais antiga cai quando entra uma nova">
+      <!-- mesa -->
+      <rect x="40" y="40" width="1040" height="520" rx="36" fill="#E6F8FE" stroke="#218BC5" stroke-width="8"/>
+      <!-- janela (área que cabe) -->
+      <rect x="55" y="70" width="1010" height="440" rx="24" fill="none" stroke="#01CDFF" stroke-width="6" stroke-dasharray="22 16"/>
+      <!-- folha mais antiga (cai) -->
+      <g class="frag fall" data-step="1">
+        <g transform="rotate(-6 180 280)">
+          <rect x="70" y="110" width="220" height="340" rx="10" fill="#fff" stroke="#218BC5" stroke-width="6"/>
+          <rect x="95" y="140" width="170" height="16" rx="8" fill="#E5646E"/><rect x="95" y="180" width="140" height="12" rx="6" fill="#B9D9EA"/><rect x="95" y="212" width="170" height="12" rx="6" fill="#B9D9EA"/><rect x="95" y="244" width="120" height="12" rx="6" fill="#B9D9EA"/>
+        </g>
+      </g>
+      <!-- folhas do meio -->
+      <g transform="rotate(3 510 280)"><rect x="235" y="120" width="220" height="340" rx="10" fill="#fff" stroke="#218BC5" stroke-width="6"/>
+        <rect x="260" y="150" width="170" height="14" rx="7" fill="#01CDFF"/><rect x="260" y="190" width="140" height="12" rx="6" fill="#B9D9EA"/><rect x="260" y="222" width="170" height="12" rx="6" fill="#B9D9EA"/></g>
+      <g transform="rotate(-2 620 280)"><rect x="400" y="105" width="220" height="340" rx="10" fill="#fff" stroke="#218BC5" stroke-width="6"/>
+        <rect x="425" y="135" width="170" height="14" rx="7" fill="#01CDFF"/><rect x="425" y="175" width="140" height="12" rx="6" fill="#B9D9EA"/><rect x="425" y="207" width="170" height="12" rx="6" fill="#B9D9EA"/></g>
+      <g transform="rotate(5 780 290)"><rect x="565" y="130" width="220" height="340" rx="10" fill="#fff" stroke="#218BC5" stroke-width="6"/>
+        <rect x="590" y="160" width="170" height="14" rx="7" fill="#01CDFF"/><rect x="590" y="200" width="140" height="12" rx="6" fill="#B9D9EA"/><rect x="590" y="232" width="170" height="12" rx="6" fill="#B9D9EA"/></g>
+      <!-- folha nova (entra) -->
+      <g class="frag enter" data-step="1">
+        <g transform="rotate(-3 840 280)">
+          <rect x="730" y="110" width="220" height="340" rx="10" fill="#fff" stroke="#01CDFF" stroke-width="8"/>
+          <rect x="755" y="140" width="170" height="16" rx="8" fill="#218BC5"/><rect x="755" y="180" width="140" height="12" rx="6" fill="#B9D9EA"/><rect x="755" y="212" width="170" height="12" rx="6" fill="#B9D9EA"/>
+          <text x="840" y="400" text-anchor="middle" font-family="'Open Sans', Arial, sans-serif" font-weight="800" font-size="40" fill="#01CDFF">NOVA</text>
+        </g>
+      </g>
+    </svg>
+    <p class="cap pop" style="--d:2;font-size:52px;max-width:520px;line-height:1.2">Só cabem <span class="hl-b">algumas folhas</span> abertas ao mesmo tempo.</p>
+  </div>
+</section>
+
+<!-- ============ 8. DICAS ============ -->
+<section class="slide">
+  <h2 class="t pop" style="--d:0">O que <em>fazer</em>?</h2>
+  <div class="body" style="align-items:stretch">
+    <div class="grid2" style="flex:1;max-height:600px;margin:auto 0">
+      <div class="card pop" style="--d:1;justify-content:center;gap:34px">
+        <svg class="ico" viewBox="0 0 100 100" width="190" height="190"><path d="M50 8L58 38L88 40L64 60L72 90L50 72L28 90L36 60L12 40L42 38Z" fill="#01CDFF"/></svg>
+        <p class="cond" style="font-size:72px;margin:0;line-height:1.02">Reforce as instruções importantes</p>
+      </div>
+      <div class="card blue pop" style="--d:2;justify-content:center;gap:34px">
+        <svg class="ico" viewBox="0 0 100 100" width="190" height="190"><path d="M14 16H86V66H44L24 86V66H14Z"/><path d="M50 28V54M37 41H63"/></svg>
+        <p class="cond" style="font-size:72px;margin:0;line-height:1.02">Assunto novo? <span class="hl-b">Conversa nova.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<script src="assets/slides.js"></script>
+</body>
+</html>
+
+

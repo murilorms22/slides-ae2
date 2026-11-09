@@ -1,0 +1,281 @@
+﻿/* =====================================================================
+   MÓDULO 2 · COMO A IA FUNCIONA — estilos compartilhados
+   Referência: 1920x1080 (16:9). O palco é escalado via transform: scale.
+   ===================================================================== */
+
+/* ---------- Variáveis de identidade visual ---------- */
+/* ---------- Fontes locais (assets/fonts) ---------- */
+@font-face { font-family: 'Barlow Condensed'; font-weight: 600; src: url('fonts/BarlowCondensed-SemiBold.ttf') format('truetype'); }
+@font-face { font-family: 'Barlow Condensed'; font-weight: 700; src: url('fonts/BarlowCondensed-Bold.ttf') format('truetype'); }
+@font-face { font-family: 'Barlow Condensed'; font-weight: 800; src: url('fonts/BarlowCondensed-ExtraBold.ttf') format('truetype'); }
+@font-face { font-family: 'Open Sans'; font-weight: 300 800; font-style: normal; src: url('fonts/OpenSans-VariableFont_wdth%2Cwght.ttf') format('truetype'); }
+:root {
+  --cyan: #01CDFF;          /* destaque principal */
+  --blue: #218BC5;          /* secundário */
+  --ink: #1A1A1A;           /* texto */
+  --bg: #FFFFFF;            /* fundo */
+  --soft-red: #E5646E;      /* erro / alerta suave */
+  --tint: #E6F8FE;          /* ciano bem clarinho p/ superfícies */
+  --muted: #55626B;         /* texto discreto (rodapé) */
+  --grad: linear-gradient(135deg, #01CDFF 0%, #218BC5 100%);
+  --font-title: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; height: 100%; overflow: hidden;
+  background: #EEF2F4;                 /* faixas laterais quando a tela não é 16:9 */
+  font-family: var(--font-body);
+  color: var(--ink);
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+
+/* ---------- Palco 1920x1080 centralizado e escalado ---------- */
+#stage {
+  position: absolute; left: 50%; top: 50%;
+  width: 1920px; height: 1080px;
+  transform: translate(-50%, -50%) scale(var(--s, 1));
+  transform-origin: center center;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* ---------- Barra de progresso (topo) ---------- */
+#progress { position: absolute; left: 0; top: 0; width: 100%; height: 8px; z-index: 50; background: transparent; }
+#progress i { display: block; height: 100%; width: 0; background: var(--cyan); transition: width .3s ease; }
+
+/* ---------- Slide base + transição (fade + deslize curto de 300ms) ---------- */
+.slide {
+  position: absolute; inset: 0;
+  padding: 70px 120px 140px 120px;
+  display: flex; flex-direction: column;
+  opacity: 0; visibility: hidden;
+  transform: translateX(30px);
+  transition: opacity .3s ease, transform .3s ease, visibility 0s linear .3s;
+}
+.slide.active { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.slide.past { transform: translateX(-30px); }
+
+/* Bloco de identidade do grupo: quadrado 110x110, extrema direita superior */
+.slide::after {
+  content: ''; position: absolute; right: 0; top: 0;
+  width: 110px; height: 110px;
+  background: url('quadrado-canto.jpeg') center / 110px 110px no-repeat;
+  pointer-events: none; z-index: 40;
+}
+/* Rodapé discreto + número do slide */
+.foot {
+  position: absolute; left: 120px; right: 120px; bottom: 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 24px; letter-spacing: .12em; color: var(--muted); font-weight: 600;
+}
+.foot b { color: var(--blue); letter-spacing: .06em; font-size: 28px; }
+
+/* ---------- Tipografia ---------- */
+.t {                                   /* título */
+  font-family: var(--font-title); font-weight: 800; text-transform: uppercase;
+  font-size: 92px; line-height: 1; letter-spacing: .01em;
+  margin: 0 0 36px 0; color: var(--ink);
+}
+.t.sm { font-size: 80px; }
+.t em, .hl { font-style: normal; color: var(--cyan); }
+.hl-b { color: var(--blue); }
+.txt { font-size: 40px; line-height: 1.3; margin: 0; }
+.cap { font-size: 42px; line-height: 1.3; margin: 0; font-weight: 600; }
+.note { font-size: 32px; line-height: 1.3; color: var(--muted); margin: 0; }
+.cond { font-family: var(--font-title); font-weight: 800; text-transform: uppercase; }
+
+/* ---------- Estruturas de layout ---------- */
+.body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 36px; min-height: 0; }
+.center { text-align: center; align-items: center; }
+.row { display: flex; align-items: center; justify-content: center; gap: 40px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; width: 100%; }
+svg.ico { fill: none; stroke: var(--blue); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.fillc { fill: var(--cyan); } .fillb { fill: var(--blue); }
+
+.card {
+  background: #fff; border: 6px solid var(--cyan); border-radius: 36px;
+  padding: 36px 44px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center;
+}
+.card.red { border-color: var(--soft-red); }
+.card.blue { border-color: var(--blue); }
+.card .h { font-family: var(--font-title); font-weight: 800; text-transform: uppercase; font-size: 68px; line-height: 1; }
+
+/* ---------- Animação de entrada em sequência (.pop + --d) ---------- */
+@keyframes pop { from { opacity: 0; transform: translateY(32px) scale(.96); } to { opacity: 1; transform: none; } }
+.slide.active .pop { animation: pop .7s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--d, 0) * .2s); }
+
+/* ---------- Fragments [REVELAR]: .frag + data-step ---------- */
+.frag { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+.frag.in { opacity: 1; transform: none; }
+
+/* Carimbo que "bate" na tela */
+.frag.stamp { transform: rotate(-14deg) scale(1.8); }
+.frag.stamp.in { transform: rotate(-14deg) scale(1); }
+
+/* SVG: folha que cai / folha nova que entra (slide mesa de estudos) */
+.frag.fall { opacity: 1; transform: none; transition: transform 1.2s cubic-bezier(.5,0,.9,.6), opacity 1.2s ease .2s; transform-box: fill-box; transform-origin: center; }
+.frag.fall.in { transform: translate(-190px, 330px) rotate(-55deg); opacity: 0; }
+.frag.enter { opacity: 0; transform: translate(420px, -40px) rotate(8deg); transform-box: fill-box; transform-origin: center; transition: transform 1s ease, opacity .6s ease; }
+.frag.enter.in { opacity: 1; transform: none; }
+
+/* ---------- Capa / abertura ---------- */
+.cover { justify-content: center; }
+.cover .kicker {
+  display: inline-block; align-self: flex-start; background: var(--grad); color: #fff;
+  font-family: var(--font-title); font-weight: 700; letter-spacing: .12em; font-size: 40px;
+  padding: 8px 28px; border-radius: 999px; margin-bottom: 28px; text-transform: uppercase;
+}
+.cover h1 { font-family: var(--font-title); font-weight: 800; text-transform: uppercase; font-size: 200px; line-height: .92; margin: 0 0 36px; }
+.cover h1 em { font-style: normal; color: var(--cyan); }
+.cover .sub { font-size: 44px; line-height: 1.3; max-width: 1100px; margin: 0; font-weight: 600; color: var(--ink); }
+.cover .who { font-size: 38px; margin-top: 36px; color: var(--blue); font-weight: 700; }
+.cover .cover-foot { position: absolute; left: 120px; bottom: 96px; font-size: 32px; color: var(--muted); font-weight: 600; }
+.cover .decor { position: absolute; right: 120px; top: 90px; width: 640px; height: 640px; }
+
+/* ---------- Slide 2 (v1): ícones do dia a dia ---------- */
+.ibubble { width: 230px; height: 230px; border-radius: 50%; background: var(--tint); display: grid; place-items: center; border: 6px solid var(--cyan); }
+.ibubble svg { width: 130px; height: 130px; }
+.bigq { font-family: var(--font-title); font-weight: 800; font-size: 170px; line-height: 1; color: var(--cyan); text-transform: uppercase; margin: 0; }
+
+/* ---------- Slide 3 (v1): metades ---------- */
+.half { flex: 1; min-height: 640px; justify-content: center; }
+.mark { width: 150px; height: 150px; }
+.mark path { fill: none; stroke-width: 22; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Slide 4 (v1): velocidade ---------- */
+.counter { font-family: var(--font-title); font-weight: 800; font-size: 200px; line-height: 1; color: var(--cyan); font-variant-numeric: tabular-nums; }
+.speed { width: 900px; height: 14px; border-radius: 7px; background: var(--tint); overflow: hidden; position: relative; }
+.speed::before { content: ''; position: absolute; inset: 0; width: 200%;
+  background: repeating-linear-gradient(90deg, var(--cyan) 0 90px, transparent 90px 150px);
+  animation: dash .6s linear infinite; }
+@keyframes dash { to { transform: translateX(-150px); } }
+
+/* ---------- Slide 8 (v1): barras de probabilidade ---------- */
+.phrase { font-size: 64px; font-weight: 700; margin: 0; }
+.blank { display: inline-block; min-width: 260px; border-bottom: 8px solid var(--cyan); }
+.bars { width: 100%; max-width: 1500px; display: flex; flex-direction: column; gap: 22px; }
+.bar { display: grid; grid-template-columns: 250px 1fr 120px; align-items: center; gap: 24px; font-size: 44px; font-weight: 700; }
+.bar .track { height: 60px; border-radius: 30px; background: var(--tint); overflow: hidden; }
+.bar .fill { height: 100%; width: 0; border-radius: 30px; background: var(--blue); transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+.bar.top .fill { background: var(--grad); }
+.bar .pct { text-align: right; color: var(--blue); font-family: var(--font-title); font-size: 64px; }
+.bar.top .pct { color: var(--ink); }
+.frag.in .fill { width: var(--w); }
+
+/* ---------- Peças de Lego (tokens) ---------- */
+.bricks { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; justify-content: center; }
+.brick {
+  --c: var(--cyan);
+  position: relative; background: var(--c); color: var(--ink);
+  font-weight: 800; font-size: 76px; line-height: 1; padding: 26px 34px 22px; border-radius: 14px;
+  box-shadow: inset 0 -8px 0 rgba(0,0,0,.12);
+}
+.brick.c2 { --c: var(--blue); color: #fff; }
+.brick::before, .brick::after {         /* pinos de encaixe */
+  content: ''; position: absolute; top: -13px; width: 28px; height: 15px; background: var(--c); border-radius: 7px 7px 0 0;
+}
+.brick::before { left: 16px; } .brick::after { right: 16px; }
+.brick.mini { padding: 0; height: 36px; font-size: 0; border-radius: 8px; }
+.brick.mini::before, .brick.mini::after { width: 14px; height: 8px; top: -7px; left: 8px; border-radius: 4px 4px 0 0; }
+.brick.mini::after { display: none; }
+.brick.lg { font-size: 84px; }
+
+/* ---------- Slide 7 (v1): celular ---------- */
+.phone { width: 800px; background: #fff; border: 12px solid var(--ink); border-radius: 56px 56px 0 0; border-bottom: 0; overflow: hidden; align-self: center; }
+.phone .scr { padding: 36px 40px; font-size: 52px; font-weight: 600; background: #fff; min-height: 140px; }
+.phone .cursor { display: inline-block; width: 4px; height: 56px; background: var(--cyan); vertical-align: -8px; animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.phone .sug { display: grid; grid-template-columns: repeat(3, 1fr); background: #E9EEF1; border-top: 3px solid #D3DCE1; }
+.phone .sug span { padding: 18px 0; text-align: center; font-size: 46px; font-weight: 700; color: var(--ink); border-right: 3px solid #D3DCE1; }
+.phone .sug span:last-child { border-right: 0; }
+.phone .sug span.best { background: var(--cyan); }
+.phone .kb { background: #D9E0E5; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+.phone .kb div { display: flex; gap: 10px; justify-content: center; }
+.phone .kb i { flex: 0 0 56px; height: 66px; border-radius: 10px; background: #fff; box-shadow: 0 3px 0 #AEB8BF; }
+.phone .kb i.sp { flex: 0 0 360px; }
+
+/* ---------- Slide 4 (v2): diagrama entrada/saída ---------- */
+.flow { display: flex; align-items: center; justify-content: center; gap: 24px; width: 100%; }
+.node { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; font-size: 36px; font-weight: 600; line-height: 1.25; }
+.node .lab { font-family: var(--font-title); font-weight: 800; font-size: 56px; text-transform: uppercase; }
+.arrow { width: 70px; height: 40px; flex: none; }
+.aiblock { width: 230px; height: 230px; border-radius: 44px; background: var(--grad); color: #fff; display: grid; place-items: center; font-family: var(--font-title); font-weight: 800; font-size: 150px; }
+
+/* ---------- Slide 5 (v2): peso dos tokens ---------- */
+.tip { background: var(--tint); border-left: 16px solid var(--cyan); border-radius: 24px; padding: 28px 44px; font-size: 44px; font-weight: 700; line-height: 1.25; max-width: 1500px; }
+
+/* ---------- Slide 6 (v2): bolhas de chat ---------- */
+.chat { display: flex; flex-direction: column; gap: 22px; width: 760px; }
+.bub { padding: 22px 32px; border-radius: 28px; font-size: 36px; line-height: 1.3; font-weight: 600; max-width: 640px; }
+.bub.u { align-self: flex-end; background: var(--grad); color: #fff; }
+.bub.a { align-self: flex-start; background: var(--tint); border: 4px solid var(--cyan); }
+.bub.old { opacity: .35; }
+.bub.q { background: #fff; border: 4px dashed var(--soft-red); color: var(--soft-red); font-weight: 700; }
+
+/* ---------- Slide 3 (v3): tabela ---------- */
+.tbl { display: grid; grid-template-columns: 340px 1fr 1fr; gap: 14px; width: 100%; max-width: 1480px; margin-right: auto; }
+.tbl > div { padding: 20px 28px; font-size: 36px; font-weight: 600; border-radius: 20px; display: flex; align-items: center; line-height: 1.2; min-height: 104px; }
+.tbl .hd { font-family: var(--font-title); font-weight: 800; font-size: 60px; text-transform: uppercase; justify-content: center; min-height: 96px; }
+.tbl .hd.free { background: var(--tint); color: var(--ink); border: 5px solid var(--cyan); }
+.tbl .hd.paid { background: var(--grad); color: #fff; }
+.tbl .rl { color: var(--blue); font-weight: 800; font-size: 38px; }
+.tbl .c { background: #F5F9FB; }
+.tbl .c.p { background: #EAF4FA; }
+
+/* ---------- Slide 5 (v3): alucinação ---------- */
+.speech { position: relative; background: var(--tint); border: 6px solid var(--cyan); border-radius: 40px; padding: 40px 52px; font-size: 54px; font-weight: 700; line-height: 1.25; width: 1180px; }
+.speech::before { content: ''; position: absolute; left: -44px; top: 80px; border: 28px solid transparent; border-right: 44px solid var(--cyan); border-left: 0; }
+.stampbox { position: absolute; right: -60px; bottom: -40px; padding: 8px 40px; border: 14px solid var(--soft-red); border-radius: 20px; color: var(--soft-red); background: rgba(255,255,255,.88); font-family: var(--font-title); font-weight: 800; font-size: 130px; line-height: 1.05; letter-spacing: .04em; text-transform: uppercase; }
+
+/* ---------- Slide 7 (v3): resumo ---------- */
+.sum { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; width: 100%; }
+.sum .it { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; font-size: 40px; font-weight: 700; line-height: 1.2; }
+.sum .ibubble { width: 220px; height: 220px; }
+.sum .ibubble svg { width: 124px; height: 124px; }
+
+/* ---------- Slide 8 (v3): ponte ---------- */
+.giant { font-family: var(--font-title); font-weight: 800; text-transform: uppercase; font-size: 250px; line-height: .95; margin: 0; }
+.giant em { font-style: normal; color: var(--cyan); }
+
+/* =====================================================================
+   IMPRESSÃO: um slide por página (Ctrl+P → Salvar como PDF)
+   ===================================================================== */
+@page { size: 1920px 1080px; margin: 0; }
+@media print {
+  html, body { overflow: visible; height: auto; background: #fff; }
+  #stage { position: static; transform: none; width: 1920px; height: auto; overflow: visible; }
+  #progress { display: none; }
+  .slide {
+    position: relative; width: 1920px; height: 1080px; overflow: hidden;
+    opacity: 1 !important; visibility: visible !important; transform: none !important; transition: none !important;
+    break-after: page; page-break-after: always;
+  }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+  .frag, .frag.stamp.in { transition: none !important; }
+  .frag { opacity: 1 !important; transform: none !important; }
+  .frag.stamp { transform: rotate(-14deg) !important; }
+  .frag.fall { opacity: 0 !important; }
+  .frag .fill { width: var(--w) !important; transition: none !important; }
+  .pop { animation: none !important; opacity: 1 !important; }
+}
+
+
+
+/* ---------- Capa do vídeo 1 (construída sobre assets/capa-base.png) ---------- */
+/* O logo e o cérebro são recortes da própria capa-base.png; os textos são HTML. */
+.capa { padding: 0; }
+.capa .foot { display: none; }
+.capa .logo, .capa .brain { position: absolute; background: url('capa-base.png') no-repeat; background-size: 1920px 1080px; }
+.capa .logo { left: 0; top: 0; width: 1050px; height: 230px; background-position: 0 0; }
+.capa .brain { left: 260px; top: 310px; width: 470px; height: 470px; background-position: -260px -310px; }
+.capa .ct { position: absolute; left: 785px; top: 290px; font-family: var(--font-title); font-weight: 800; font-size: 215px; line-height: .98; margin: 0; letter-spacing: -.005em; }
+.capa .ct em { display: block; font-style: normal; color: var(--cyan); }
+.capa .line { position: absolute; left: 770px; top: 775px; width: 796px; height: 8px; background: linear-gradient(90deg, #0A5CA8, #4FCBF7); border-radius: 4px; }
+.capa .mod { position: absolute; left: 790px; top: 795px; font-size: 44px; font-weight: 700; margin: 0; }
+.capa .mod span { color: var(--cyan); }
+.capa .inst { position: absolute; left: 790px; top: 890px; font-size: 32px; line-height: 1.4; color: var(--muted); font-weight: 600; margin: 0; }
+.capa .who { position: absolute; left: 55px; bottom: 50px; font-size: 38px; font-style: italic; margin: 0; }
+

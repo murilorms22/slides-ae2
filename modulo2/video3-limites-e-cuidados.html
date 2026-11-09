@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Módulo 2 · Vídeo 3 · Limites e cuidados</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-module="MÓDULO 2 · COMO A IA FUNCIONA">
+<main id="stage">
+
+<!-- ============ 1. ABERTURA ============ -->
+<section class="slide cover">
+  <span class="kicker pop" style="--d:0">Módulo 2 · Vídeo 3</span>
+  <h1 class="pop" style="--d:1">Limites<br>e <em>cuidados</em></h1>
+  <p class="sub pop" style="--d:2">O que a IA ainda não consegue (e quanto dá para usar de graça)</p>
+  <svg class="decor pop" style="--d:2" viewBox="0 0 640 640" aria-hidden="true">
+    <path d="M320 40L590 560H50Z" fill="none" stroke="#01CDFF" stroke-width="22" stroke-linejoin="round"/>
+    <rect x="296" y="230" width="48" height="170" rx="24" fill="#218BC5"/>
+    <circle cx="320" cy="470" r="30" fill="#218BC5"/>
+  </svg>
+</section>
+
+<!-- ============ 2. CUSTO FÍSICO ============ -->
+<section class="slide">
+  <h2 class="t sm pop" style="--d:0">Por trás da tela tem <em>um prédio inteiro</em></h2>
+  <div class="body">
+    <div class="flow" style="gap:10px">
+      <div class="node pop" style="--d:1;width:230px">
+        <svg class="ico" viewBox="0 0 100 100" width="150" height="150"><circle cx="50" cy="32" r="18"/><path d="M16 92C16 62 84 62 84 92"/></svg>
+        <span class="lab" style="font-size:48px">Você</span>
+      </div>
+      <svg class="arrow pop" style="--d:2" viewBox="0 0 70 40"><path d="M4 20H62M46 6L62 20L46 34" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="node pop" style="--d:3;width:230px">
+        <svg class="ico" viewBox="0 0 100 100" width="150" height="150"><circle cx="50" cy="50" r="38"/><ellipse cx="50" cy="50" rx="16" ry="38"/><line x1="12" y1="50" x2="88" y2="50"/></svg>
+        <span class="lab" style="font-size:48px">Internet</span>
+      </div>
+      <svg class="arrow pop" style="--d:4" viewBox="0 0 70 40"><path d="M4 20H62M46 6L62 20L46 34" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="node pop" style="--d:5;width:300px;background:var(--tint);border:6px solid var(--cyan);border-radius:36px;padding:22px 10px">
+        <svg class="ico" viewBox="0 0 100 100" width="150" height="150"><rect x="14" y="10" width="72" height="24" rx="6"/><rect x="14" y="38" width="72" height="24" rx="6"/><rect x="14" y="66" width="72" height="24" rx="6"/><g fill="#01CDFF" stroke="none"><circle cx="28" cy="22" r="4"/><circle cx="28" cy="50" r="4"/><circle cx="28" cy="78" r="4"/></g></svg>
+        <span class="lab" style="font-size:48px">Data center</span>
+        <span style="font-size:32px">servidores</span>
+      </div>
+      <svg class="arrow pop" style="--d:6" viewBox="0 0 70 40"><path d="M4 20H62M46 6L62 20L46 34" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="node pop" style="--d:7;width:290px">
+        <svg class="ico" viewBox="0 0 200 100" width="250" height="125"><polygon points="52,6 22,54 46,54 40,94 76,42 52,42" fill="#01CDFF"/><g stroke="#218BC5"><line x1="150" y1="14" x2="150" y2="86"/><line x1="119" y1="32" x2="181" y2="68"/><line x1="119" y1="68" x2="181" y2="32"/></g></svg>
+        <span class="lab" style="font-size:44px;line-height:1">Energia + refrigeração</span>
+      </div>
+      <svg class="arrow pop" style="--d:8" viewBox="0 0 70 40"><path d="M4 20H62M46 6L62 20L46 34" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="node pop" style="--d:9;width:230px">
+        <svg class="ico" viewBox="0 0 100 100" width="150" height="150"><path d="M10 14H90V66H42L22 86V66H10Z"/><path d="M26 32H74M26 48H58"/></svg>
+        <span class="lab" style="font-size:48px">Resposta</span>
+      </div>
+    </div>
+    <p class="cap pop" style="--d:10;max-width:1500px;text-align:center">Cada resposta tem custo real: computadores potentes (<span class="hl-b">GPUs</span>) e muita energia.</p>
+  </div>
+</section>
+
+<!-- ============ 3. GRÁTIS VS. PAGO ============ -->
+<section class="slide">
+  <h2 class="t pop" style="--d:0">Gratuito <em>vs.</em> pago</h2>
+  <div class="body">
+    <div class="tbl pop" style="--d:1">
+      <div></div><div class="hd free">Gratuito</div><div class="hd paid">Pago</div>
+      <div class="rl">Mensagens</div><div class="c">limite por hora/dia</div><div class="c p">limites maiores</div>
+      <div class="rl">Horário de pico</div><div class="c">pode ter fila</div><div class="c p">prioridade</div>
+      <div class="rl">Janela de contexto</div><div class="c">mais enxuta</div><div class="c p">maior</div>
+      <div class="rl">Tipo de modelo</div><div class="c">mais leve</div><div class="c p">maior capacidade de raciocínio</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. MENSAGEM PARA A ESCOLA ============ -->
+<section class="slide">
+  <h2 class="t pop" style="--d:0">Para a escola, <em>o gratuito resolve muito</em></h2>
+  <div class="body">
+    <p class="cond pop" style="--d:1;font-size:92px;line-height:1.02;text-align:center;max-width:1500px;margin:0">Usado com objetividade, <span class="hl-b">atende bem</span> o contexto escolar.</p>
+    <div class="pop" style="--d:2;width:1100px">
+      <div style="border:6px solid var(--blue);border-radius:24px;padding:18px 22px;background:var(--tint)">
+        <div class="bricks" style="justify-content:flex-start;min-height:60px;align-items:flex-end" data-bricks="7"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:32px;font-weight:700;color:var(--muted);margin-top:8px"><span>seus tokens</span><span>limite</span></div>
+    </div>
+    <p class="cap pop" style="--d:3">Prompt enxuto <span class="hl-b">rende mais</span> dentro do limite.</p>
+  </div>
+</section>
+
+<!-- ============ 5. ALUCINAÇÃO [REVELAR] ============ -->
+<section class="slide">
+  <h2 class="t pop" style="--d:0">Alucinação: <em>quando a IA inventa</em></h2>
+  <div class="body">
+    <div class="row pop" style="--d:1;gap:90px;align-items:flex-start;padding-top:30px">
+      <!-- Avatar geométrico da IA -->
+      <svg viewBox="0 0 200 220" width="190" height="210" style="flex:none;margin-top:30px">
+        <line x1="100" y1="10" x2="100" y2="44" stroke="#218BC5" stroke-width="8"/><circle cx="100" cy="12" r="12" fill="#01CDFF"/>
+        <rect x="24" y="44" width="152" height="130" rx="34" fill="#218BC5"/>
+        <circle cx="68" cy="100" r="18" fill="#fff"/><circle cx="132" cy="100" r="18" fill="#fff"/>
+        <circle cx="68" cy="100" r="8" fill="#1A1A1A"/><circle cx="132" cy="100" r="8" fill="#1A1A1A"/>
+        <rect x="70" y="140" width="60" height="10" rx="5" fill="#fff"/>
+      </svg>
+      <div class="speech">
+        “Segundo o livro <em>A Física das Nuvens</em>, de Marcos Teixeira (2011)…”
+        <div class="stampbox frag stamp" data-step="1">Não existe</div>
+      </div>
+    </div>
+    <p class="cap pop" style="--d:3;margin-top:36px">Ela calcula o que <span class="hl-b">SOA</span> coerente, não o que é verdade.</p>
+  </div>
+</section>
+
+<!-- ============ 6. DATA DE CORTE ============ -->
+<section class="slide">
+  <h2 class="t pop" style="--d:0">Data de corte <em>do conhecimento</em></h2>
+  <div class="body">
+    <svg class="pop" style="--d:1" viewBox="0 0 1680 440" width="1680" height="440" aria-label="Linha do tempo com um muro na data de corte">
+      <defs>
+        <pattern id="tijolo" width="60" height="40" patternUnits="userSpaceOnUse">
+          <rect width="60" height="40" fill="#218BC5"/>
+          <path d="M0 0H60M0 20H60M0 40H60M30 0V20M0 20V40M60 20V40" stroke="#fff" stroke-width="4" fill="none"/>
+        </pattern>
+      </defs>
+      <!-- tempo conhecido -->
+      <line x1="20" y1="310" x2="1020" y2="310" stroke="#01CDFF" stroke-width="22" stroke-linecap="round"/>
+      <g font-family="'Open Sans', Arial, sans-serif" font-weight="700" font-size="34" fill="#1A1A1A">
+        <circle cx="140" cy="310" r="14" fill="#fff" stroke="#218BC5" stroke-width="6"/><circle cx="420" cy="310" r="14" fill="#fff" stroke="#218BC5" stroke-width="6"/><circle cx="700" cy="310" r="14" fill="#fff" stroke="#218BC5" stroke-width="6"/>
+        <text x="520" y="385" text-anchor="middle" fill="#218BC5">o que ela aprendeu</text>
+      </g>
+      <!-- muro -->
+      <rect x="1030" y="90" width="80" height="260" rx="6" fill="url(#tijolo)"/>
+      <rect x="1030" y="90" width="80" height="260" rx="6" fill="none" stroke="#1A1A1A" stroke-width="5"/>
+      <text x="1070" y="60" text-anchor="middle" font-family="'Barlow Condensed','Arial Narrow',sans-serif" font-weight="800" font-size="56" fill="#E5646E">AQUI ELA PARA DE SABER</text>
+      <!-- depois do muro -->
+      <line x1="1130" y1="310" x2="1600" y2="310" stroke="#B9C5CC" stroke-width="12" stroke-dasharray="6 26" stroke-linecap="round"/>
+      <path d="M1580 286L1620 310L1580 334" fill="none" stroke="#B9C5CC" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="1370" y="270" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="150" fill="#B9C5CC">?</text>
+      <text x="1370" y="385" text-anchor="middle" font-family="'Open Sans', Arial, sans-serif" font-weight="700" font-size="34" fill="#55626B">o que veio depois</text>
+    </svg>
+    <p class="cap pop" style="--d:3;font-size:38px;max-width:1500px;text-align:center">Ferramentas com busca na web ajudam, mas não eliminam o risco de erro: <span class="hl-b">confira sempre.</span></p>
+  </div>
+</section>
+
+<!-- ============ 7. RESUMO ============ -->
+<section class="slide">
+  <h2 class="t pop" style="--d:0">O que levar <em>deste módulo</em></h2>
+  <div class="body">
+    <div class="sum">
+      <div class="it pop" style="--d:1">
+        <div class="ibubble"><svg class="ico" viewBox="0 0 100 100"><line x1="20" y1="82" x2="64" y2="38"/><path d="M72 14V34M62 24H82"/><line x1="12" y1="12" x2="88" y2="88" stroke="#E5646E"/></svg></div>Não é mágica</div>
+      <div class="it pop" style="--d:2">
+        <div class="ibubble"><svg class="ico" viewBox="0 0 100 100"><rect x="4" y="36" width="24" height="28" rx="5"/><rect x="38" y="36" width="24" height="28" rx="5"/><rect x="72" y="36" width="24" height="28" rx="5" stroke-dasharray="8 8" stroke="#01CDFF"/></svg></div>Prevê a próxima palavra</div>
+      <div class="it pop" style="--d:3">
+        <div class="ibubble"><svg viewBox="0 0 100 100"><rect x="8" y="50" width="40" height="30" rx="6" fill="#01CDFF"/><rect x="52" y="50" width="40" height="30" rx="6" fill="#218BC5"/><rect x="30" y="16" width="40" height="30" rx="6" fill="#218BC5"/></svg></div>Lê em tokens</div>
+      <div class="it pop" style="--d:4">
+        <div class="ibubble"><svg class="ico" viewBox="0 0 100 100"><rect x="8" y="22" width="40" height="56" rx="6"/><rect x="30" y="16" width="40" height="56" rx="6" fill="#fff"/><rect x="52" y="10" width="40" height="56" rx="6" fill="#fff" stroke="#01CDFF" stroke-dasharray="8 8"/></svg></div>Memória limitada</div>
+      <div class="it pop" style="--d:5">
+        <div class="ibubble"><svg class="ico" viewBox="0 0 100 100" style="stroke:#E5646E"><path d="M50 12L92 84H8Z"/><line x1="50" y1="38" x2="50" y2="60"/><circle cx="50" cy="73" r="2"/></svg></div>Pode inventar</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. PONTE PARA O MÓDULO 3 ============ -->
+<section class="slide" style="text-align:center">
+  <div class="body">
+    <h1 class="giant pop" style="--d:0">IA apoia.<br><em>Você decide.</em></h1>
+    <p class="cap pop" style="--d:2;font-size:48px">Próximo módulo: uso consciente na aprendizagem, com o Christian.</p>
+  </div>
+</section>
+
+</main>
+<script src="assets/slides.js"></script>
+</body>
+</html>
+
+
